@@ -1,0 +1,12 @@
+---
+title:  "Attitudes Toward Immigration"
+execute: 
+  echo: false
+format: html
+---
+
+```{r}
+#| label: setup
+library(tidymodels)
+library(broom)
+```

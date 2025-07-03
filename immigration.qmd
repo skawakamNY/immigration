@@ -1,0 +1,48 @@
+---
+title:  "Attitudes Toward Immigration"
+execute: 
+  echo: false
+format: html
+---
+
+```{r}
+#| label: setup
+#| cache: true
+library(tidymodels)
+library(broom)
+library(knitr)
+library(gt)
+library(ggplot2)
+library(dplyr)
+library(marginaleffects)
+
+# Example data frame with coefficient and confidence intervals
+coef_data <- tibble(
+  term = "Treatment Effect",
+  estimate = 1.55,
+  conf.low = 0.52,
+  conf.high = 2.97
+)
+
+ggplot(coef_data, aes(x = term, y = estimate)) +
+  geom_point(size = 4, color = "#2c7fb8") +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2, color = "#2c7fb8") +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Estimated Effect of Treatment on Outcome",
+    subtitle = "Treatment increases the outcome by approximately 1.55 units, with a 95% confidence interval from 0.52 to 2.97",
+    caption = "Source: Experimental data collected for this study",
+    x = NULL,
+    y = "Estimated Effect (units)"
+  ) +
+  theme(
+    axis.text.x = element_text(size = 12)
+  )
+```
+
+```{latex}
+\[
+\hat{\text{att\_end}} = 1.25 + 0.75 \times \text{treatment}
+\]
+```
+
